@@ -7,7 +7,7 @@ import widgetobjects.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class GitHubEnterprizeSalesPageObjects {
+public class GitHubEnterprizeSalesWithPageObjects {
 
     @Test
     void tryToReachTheSalesTeam() {
