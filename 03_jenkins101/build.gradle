@@ -45,6 +45,8 @@ test {
 
     systemProperty 'junit.jupiter.extensions.autodetection.enabled','true'
 
-    systemProperties += System.properties
+    //systemProperties += System.properties
+
+    systemProperty 'selenide.remote','http://159.89.110.242:4555/wd/hub'
 
 }
