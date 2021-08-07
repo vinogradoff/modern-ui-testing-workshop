@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Epic("Level 1")
 @Feature("Level 2")
-@Story("Level 2")
+@Story("Level 3")
 @DisplayName("Enterprise Sales contacts")
 public class GitHubEnterprizeSales {
 
