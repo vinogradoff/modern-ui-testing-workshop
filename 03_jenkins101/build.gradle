@@ -49,5 +49,5 @@ test {
             { it.key.toString().startsWith("selenide.")}
 
     // always run the tests, never use cached results
-    inputs.property "start.test.time", LocalDate.now()
+    inputs.property "start.test.time", LocalDateTime.now()
 }
