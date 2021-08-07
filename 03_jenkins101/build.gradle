@@ -45,4 +45,6 @@ test {
 
     systemProperty 'junit.jupiter.extensions.autodetection.enabled','true'
 
+    systemProperties += System.properties
+
 }
