@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    options { timestamps () }
+
+    stages {
+        stage("run tests ") {
+            parallel{
+                stage ("jenkins101"){
+                    steps {
+                        echo "running test"
+                        sh "cd 03_jenkins101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub clean test"
+                    }
+                }
+                stage("allure101") {
+                    steps {
+                        echo "running test"
+                        sh "cd 02_allure101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub clean test"
+                    }
+                }
+            }
+        }
+    }
+    post{
+        always{
+            echo "running reports"
+            allure([
+                includeProperties: false,
+                properties       : [],
+                reportBuildPolicy: 'ALWAYS',
+                results          : [[path: '03_jenkins101/build/allure-results'],
+                        [path: '02_allure101/build/allure-results']]
+            ])
+        }
+    }
+}
