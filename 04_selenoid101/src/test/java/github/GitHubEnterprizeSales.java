@@ -1,6 +1,7 @@
 package github;
 
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -8,6 +9,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -21,6 +23,10 @@ public class GitHubEnterprizeSales {
 
     @BeforeAll
     static void init() {
+        var caps = new DesiredCapabilities();
+        caps.setBrowserName("chrome");
+        Configuration.browserCapabilities = caps;
+
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
