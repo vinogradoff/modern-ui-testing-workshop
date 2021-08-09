@@ -4,7 +4,7 @@ pipeline {
     options { timestamps () }
 
     stages {
-        stage("tests")
+        stage("tests"){
             parallel{
                 stage ("jenkins101"){
                     steps {
