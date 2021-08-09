@@ -23,10 +23,6 @@ public class GitHubEnterprizeSales {
 
     @BeforeAll
     static void init() {
-        var caps = new DesiredCapabilities();
-        caps.setBrowserName("chrome");
-        Configuration.browserCapabilities = caps;
-
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
