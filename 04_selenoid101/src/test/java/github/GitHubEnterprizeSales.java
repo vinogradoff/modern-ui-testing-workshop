@@ -11,6 +11,8 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.Map;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -37,6 +39,7 @@ public class GitHubEnterprizeSales {
         $("h1").shouldHave(text("Build like the best"));
         // Contact Sales
         $("div.enterprise-hero").$(byText("Contact Sales")).click();
+        sleep(20000);
         // Fill in: Name, Company, Work Email
         $("input#contact_request_name").setValue("Alexei");
         $("input#contact_request_organization_name").setValue("Radio QA");
