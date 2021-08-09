@@ -36,7 +36,7 @@ public class GitHubTest {
         doScreenshot();
         // assert: selenide/selenide in the header of the page
         attachText();
-        $("h1").shouldHave(text("selenide2 / selenide"));
+        $("h1").shouldHave(text("selenide / selenide"));
     }
 
     @Attachment("Helpful information")
