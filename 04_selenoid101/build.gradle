@@ -13,7 +13,7 @@ java {
     }
 }
 
-compileTestJava {
+compileTestJava{
     options.encoding = 'UTF-8'
 }
 dependencies {
@@ -40,27 +40,18 @@ allure {
 test {
     useJUnitPlatform()
 
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "full"
-        }
-    }
+    systemProperty 'allure.link.tms.pattern','https://youtrack.jetbrains.com/issue/{}'
+    systemProperty 'allure.link.issue.pattern','https://youtrack.jetbrains.com/issue/{}'
 
-    systemProperty 'allure.link.tms.pattern', 'https://youtrack.jetbrains.com/issue/{}'
-    systemProperty 'allure.link.issue.pattern', 'https://youtrack.jetbrains.com/issue/{}'
+    systemProperty 'junit.jupiter.extensions.autodetection.enabled','true'
 
-    systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
-
-    systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
-    systemProperty 'junit.jupiter.execution.parallel.mode.default', 'concurrent'
-    systemProperty 'junit.jupiter.execution.parallel.config.strategy', 'fixed'
-    systemProperty 'junit.jupiter.execution.parallel.config.fixed.parallelism', '1'
+    systemProperty 'junit.jupiter.execution.parallel.enabled','true'
+    systemProperty 'junit.jupiter.execution.parallel.mode.default','concurrent'
+    systemProperty 'junit.jupiter.execution.parallel.config.strategy','fixed'
+    systemProperty 'junit.jupiter.execution.parallel.config.fixed.parallelism','2'
 
     systemProperties += System.properties.findAll
-            { it.key.toString().startsWith("selenide.") }
-
-
+            { it.key.toString().startsWith("selenide.")}
 
     // always run the tests, never use cached results
     inputs.property "start.test.time", LocalDateTime.now()

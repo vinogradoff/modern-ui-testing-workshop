@@ -6,36 +6,18 @@ pipeline {
     stages {
         stage("run tests ") {
             parallel{
-                stage ("selenoid-chrome"){
+                stage ("jenkins101"){
                     steps {
                         echo "running test"
-                        sh """cd 04_selenoid101; ./gradlew \
-                                -Dselenide.browser=SelenoidDriver \
-                                -Dselenide.selenoidUrl=http://selenoid-scaled:selenoid-pwd@159.89.110.242:5555/wd/hub \
-                                -Dselenide.browserName=chrome \
-                                -Dselenide.browserVersion=90 \
-                                clean test
-                        """
-                    }
-                }
-                stage ("selenoid-firefox"){
-                    steps {
-                        echo "running test"
-                        sh """cd 04_selenoid101; ./gradlew \
-                                -Dselenide.browser=SelenoidDriver \
-                                -Dselenide.selenoidUrl=http://selenoid-scaled:selenoid-pwd@159.89.110.242:5555/wd/hub \
-                                -Dselenide.browserName=firefox \
-                                clean test
-                        """
+                        sh "cd 03_jenkins101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub clean test"
                     }
                 }
                 stage("allure101") {
                     steps {
                         echo "running test"
-                        sh "cd 02_allure101; ./gradlew -Dselenide.remote=http://159.89.110.242:4444/wd/hub clean test"
+                        sh "cd 02_allure101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub clean test"
                     }
                 }
-
             }
         }
     }
@@ -46,7 +28,7 @@ pipeline {
                 includeProperties: false,
                 properties       : [],
                 reportBuildPolicy: 'ALWAYS',
-                results          : [[path: '04_selenoid101/build/allure-results'],
+                results          : [[path: '03_jenkins101/build/allure-results'],
                         [path: '02_allure101/build/allure-results']]
             ])
         }
