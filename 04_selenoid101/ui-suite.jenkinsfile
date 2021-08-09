@@ -6,12 +6,32 @@ pipeline {
     stages {
         stage("run tests ") {
             parallel{
-                stage ("selenoid101"){
+                stage ("selenoid with chrome"){
                     steps {
                         echo "running test"
-                        sh "cd 04_selenoid101; ./gradlew -Dselenide.remote=http://159.89.110.242:4444/wd/hub clean test"
+                        sh """cd 04_selenoid101; ./gradlew \
+                                -Dselenide.browser=SelenoidDriver \
+                                -Dselenide.selenoidUrl=http://159.89.110.242:4444/wd/hub \
+                                -Dselenide.browserName=chrome \
+                                -Dselenide.browserVersion=90 \
+                                clean test
+                                                """
+
                     }
                 }
+                stage ("selenoid with firefox"){
+                            steps {
+                                echo "running test"
+                                sh """cd 04_selenoid101; ./gradlew \
+                                    -Dselenide.browser=SelenoidDriver \
+                                    -Dselenide.selenoidUrl=http://159.89.110.242:4444/wd/hub \
+                                    -Dselenide.browserName=firefox \
+                                    -Dselenide.browserVersion=89 \
+                                    clean test
+                                                        """
+
+                                    }
+                                }
                 stage("allure101") {
                     steps {
                         echo "running test"
