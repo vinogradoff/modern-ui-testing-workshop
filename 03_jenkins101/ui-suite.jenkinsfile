@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    options { timestamps () }
+
+    stages {
+        stage("run tests") {
+            steps {
+                echo "running test"
+            }
+        }
+        stage("reports") {
+            steps {
+                echo "running reports"
+            }
+        }
+    }
+}
