@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("run tests ") {
             parallel{
-                stage ("jenkins101"){
+                stage ("selenoid-chrome"){
                     steps {
                         echo "running test"
                         sh """cd 04_selenoid101; ./gradlew \
@@ -14,6 +14,17 @@ pipeline {
                                 -Dselenide.selenoidUrl=http://159.89.110.242:4444/wd/hub \
                                 -Dselenide.browserName=chrome \
                                 -Dselenide.browserVersion=90 \
+                                clean test
+                        """
+                    }
+                }
+                stage ("selenoid-firefox"){
+                    steps {
+                        echo "running test"
+                        sh """cd 04_selenoid101; ./gradlew \
+                                -Dselenide.browser=SelenoidDriver \
+                                -Dselenide.selenoidUrl=http://159.89.110.242:4444/wd/hub \
+                                -Dselenide.browserName=firefox \
                                 clean test
                         """
                     }
