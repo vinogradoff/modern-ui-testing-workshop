@@ -1,5 +1,7 @@
+allure-results/
 .allure/
 .idea/
 .gradle/
 .DS_Store
 build
+out
