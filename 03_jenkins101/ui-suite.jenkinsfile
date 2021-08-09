@@ -7,7 +7,7 @@ pipeline {
         stage("run tests") {
             steps {
                 echo "running test"
-                sh "cd 03_jenkins101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub test"
+                sh "cd 03_jenkins101; ./gradlew -Dselenide.remote=http://159.89.110.242:4555/wd/hub clean test"
             }
         }
     }
