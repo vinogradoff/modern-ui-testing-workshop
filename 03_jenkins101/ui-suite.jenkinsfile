@@ -26,7 +26,8 @@ pipeline {
                     includeProperties: false,
                     properties       : [],
                     reportBuildPolicy: 'ALWAYS',
-                    results          : [[path: '03_jenkins101/build/allure-results']]
+                    results          : [[path: '03_jenkins101/build/allure-results'],
+                                        [path: '02_allure101/build/allure-results']]
                 ])
         }
     }
