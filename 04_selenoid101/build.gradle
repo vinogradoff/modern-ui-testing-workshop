@@ -60,6 +60,8 @@ test {
     systemProperties += System.properties.findAll
             { it.key.toString().startsWith("selenide.") }
 
+
+
     // always run the tests, never use cached results
     inputs.property "start.test.time", LocalDateTime.now()
 

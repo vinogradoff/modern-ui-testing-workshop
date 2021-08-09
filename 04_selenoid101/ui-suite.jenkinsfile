@@ -9,7 +9,13 @@ pipeline {
                 stage ("jenkins101"){
                     steps {
                         echo "running test"
-                        sh "cd 04_selenoid101; ./gradlew -Dselenide.remote=http://159.89.110.242:4444/wd/hub clean test"
+                        sh """cd 04_selenoid101; ./gradlew \
+                                -Dselenide.browser=SelenoidDriver \
+                                -Dselenide.remote=http://159.89.110.242:4444/wd/hub \
+                                -Dselenide.browserName=chrome \
+                                -Dselenide.browserVersion=90 \
+                                clean test
+                        """
                     }
                 }
                 stage("allure101") {
@@ -18,6 +24,7 @@ pipeline {
                         sh "cd 02_allure101; ./gradlew -Dselenide.remote=http://159.89.110.242:4444/wd/hub clean test"
                     }
                 }
+
             }
         }
     }
